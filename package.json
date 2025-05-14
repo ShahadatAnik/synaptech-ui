@@ -1,0 +1,86 @@
+{
+  "name": "synaptech-ui",
+  "private": false,
+  "version": "0.0.12",
+  "type": "module",
+  "main": "./dist/es/index.js",
+  "module": "./dist/es/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/es/index.js"
+    },
+    "./components": {
+      "types": "./dist/types/components/index.d.ts",
+      "import": "./dist/es/components.js"
+    },
+    "./hooks": {
+      "types": "./dist/types/hooks/index.d.ts",
+      "import": "./dist/es/hooks.js"
+    },
+    "./styles.css": {
+      "import": "./dist/assets/index.css"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShahadatAnik/synaptech-ui"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "library",
+    "tailwindcss",
+    "shadcn"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "lint": "eslint .",
+    "build": "rm -rf dist && npm run build:es && npm run build:types",
+    "build:es": "vite build",
+    "build:umd": "vite build --mode umd",
+    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --outDir dist/types",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.2",
+    "@tailwindcss/vite": "^4.1.6",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.510.0",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.15.18",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "rollup": "^4.40.2",
+    "rollup-plugin-dts": "^6.2.1",
+    "tw-animate-css": "^1.2.9",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.3"
+  },
+  "peerDependencies": {
+    "@radix-ui/react-slot": "^1.2.2",
+    "lucide-react": "^0.510.0",
+    "react": ">=18.2.0 <20.0.0",
+    "react-dom": ">=18.2.0 <20.0.0",
+    "tailwindcss": ">=3.0.0 <5.0.0"
+  }
+}
