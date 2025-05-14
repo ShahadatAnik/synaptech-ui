@@ -1,6 +1,4 @@
-# SynapTech UIদেয়াতুন নেসা
-
-![SynapTech UI Banner](https://placehold.co/1200x400?text=SynapTech+UI+-+Modern+Dashboard+Components) <!-- Replace with actual banner -->
+# Synap UI
 
 A modern, accessible UI component library built for enterprise dashboards and ERP systems. Powered by Tailwind CSS, Radix UI, and React.
 
@@ -20,7 +18,7 @@ A modern, accessible UI component library built for enterprise dashboards and ER
 ## 🚀 Installation
 
 ```bash
-npm install synaptech-ui
+npm install synap-ui
 # or
-yarn add synaptech-ui
+yarn add synap-ui
 ```
