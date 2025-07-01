@@ -1,36 +1,42 @@
-import { resolve } from 'path';
+import { dirname, resolve as pathResolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig, type PluginOption } from 'vite';
 import dts from 'vite-plugin-dts';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Update the esBuild configuration
 const esBuild = defineConfig({
-	plugins: [react(), tailwindcss(), dts()],
+	plugins: [react(), tailwindcss(), dts(), visualizer() as PluginOption],
 	resolve: {
 		alias: {
-			'@': resolve(__dirname, 'src'),
+			'@': pathResolve(__dirname, 'src'),
 		},
 	},
 	build: {
 		outDir: './dist',
 		cssCodeSplit: true,
 		cssMinify: true,
+		sourcemap: false,
+		emptyOutDir: true,
 		lib: {
 			name: 'SynapTechUI',
-			cssFileName: 'styles',
 			entry: {
-				index: resolve(__dirname, 'src/index.ts'),
-				form: resolve(__dirname, 'src/core/form/index.ts'),
-				table: resolve(__dirname, 'src/core/data-table/index.tsx'),
-				modal: resolve(__dirname, 'src/core/modal/index.ts'),
-				components: resolve(__dirname, 'src/components/index.ts'),
-				'utils/validators': resolve(__dirname, 'src/utils/validators.ts'),
-				hooks: resolve(__dirname, 'src/hooks/index.ts'),
-				providers: resolve(__dirname, 'src/providers/index.ts'),
+				index: pathResolve(__dirname, 'src/index.ts'),
+				form: pathResolve(__dirname, 'src/core/form/index.ts'),
+				table: pathResolve(__dirname, 'src/core/data-table/index.tsx'),
+				modal: pathResolve(__dirname, 'src/core/modal/index.ts'),
+				components: pathResolve(__dirname, 'src/components/index.ts'),
+				'utils/validators': pathResolve(__dirname, 'src/utils/validators.ts'),
+				hooks: pathResolve(__dirname, 'src/hooks/index.ts'),
+				providers: pathResolve(__dirname, 'src/providers/index.ts'),
 			},
 			formats: ['es'],
 			fileName: (format, entryName) => `${format}/${entryName}.js`,
+			cssFileName: 'styles',
 		},
 		rollupOptions: {
 			external: [
@@ -41,14 +47,32 @@ const esBuild = defineConfig({
 				'class-variance-authority',
 				'clsx',
 				'lucide-react',
+				'@tanstack/react-table',
+				'@handsontable/react',
+				'handsontable',
+				'date-fns',
+				'react-csv',
+				'cmdk',
+				'@radix-ui/react-slot',
+				'@radix-ui/react-icons',
+				'zod',
+				'zod_utilz',
+				'axios',
 			],
 			output: {
-				preserveModules: false,
+				preserveModules: true,
 				assetFileNames: 'assets/[name][extname]',
+				globals: {
+					react: 'React',
+					'react-dom': 'ReactDOM',
+					tailwindcss: 'tailwindcss',
+					'tailwind-merge': 'tailwindMerge',
+					'class-variance-authority': 'classVarianceAuthority',
+					clsx: 'clsx',
+					'lucide-react': 'lucideReact',
+				},
 			},
 		},
-		sourcemap: true,
-		emptyOutDir: true,
 	},
 });
 
@@ -63,8 +87,10 @@ const umBuild = defineConfig({
 		}),
 	],
 	build: {
+		sourcemap: false,
+		emptyOutDir: true,
 		lib: {
-			entry: resolve(__dirname, 'src/index.ts'),
+			entry: pathResolve(__dirname, 'src/index.ts'),
 			name: 'SynapTechUI',
 			fileName: (format) => `${format}/index.js`,
 			formats: ['umd'],
@@ -73,11 +99,22 @@ const umBuild = defineConfig({
 			external: [
 				'react',
 				'react-dom',
+				'tailwindcss',
 				'tailwind-merge',
 				'class-variance-authority',
-				'@radix-ui/react-slot',
 				'clsx',
 				'lucide-react',
+				'@tanstack/react-table',
+				'@handsontable/react',
+				'handsontable',
+				'date-fns',
+				'react-csv',
+				'cmdk',
+				'@radix-ui/react-slot',
+				'@radix-ui/react-icons',
+				'zod',
+				'zod_utilz',
+				'axios',
 			],
 			output: {
 				globals: {
@@ -91,9 +128,6 @@ const umBuild = defineConfig({
 				},
 			},
 		},
-
-		sourcemap: true,
-		emptyOutDir: true,
 	},
 });
 
