@@ -1,7 +1,7 @@
 {
 	"name": "synap-ui",
 	"private": false,
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"type": "module",
 	"main": "./dist/es/index.js",
 	"module": "./dist/es/index.js",
@@ -60,7 +60,7 @@
 		"lint": "eslint .",
 		"build:es": "vite build",
 		"build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --outDir dist/types",
-		"build": "rm -rf dist && npm run build:es && npm run build:types",
+		"build": "npm run build:es && npm run build:types",
 		"build:umd": "vite build --mode umd",
 		"prepublishOnly": "npm run build",
 		"prettier:write": "prettier . --write"
