@@ -1,86 +1,144 @@
 {
-  "name": "synap-ui",
-  "private": false,
-  "version": "0.0.1",
-  "type": "module",
-  "main": "./dist/es/index.js",
-  "module": "./dist/es/index.js",
-  "types": "./dist/types/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/es/index.js"
-    },
-    "./components": {
-      "types": "./dist/types/components/index.d.ts",
-      "import": "./dist/es/components.js"
-    },
-    "./hooks": {
-      "types": "./dist/types/hooks/index.d.ts",
-      "import": "./dist/es/hooks.js"
-    },
-    "./styles.css": {
-      "import": "./dist/assets/index.css"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ShahadatAnik/synaptech-ui"
-  },
-  "keywords": [
-    "react",
-    "ui",
-    "components",
-    "library",
-    "tailwindcss",
-    "shadcn"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "dev": "vite",
-    "lint": "eslint .",
-    "build": "rm -rf dist && npm run build:es && npm run build:types",
-    "build:es": "vite build",
-    "build:umd": "vite build --mode umd",
-    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --outDir dist/types",
-    "prepublishOnly": "npm run build"
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.2.2",
-    "@tailwindcss/vite": "^4.1.6",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.510.0",
-    "tailwind-merge": "^3.3.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@rollup/plugin-typescript": "^12.1.2",
-    "@types/node": "^22.15.18",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@typescript-eslint/eslint-plugin": "^8.30.1",
-    "@typescript-eslint/parser": "^8.30.1",
-    "@vitejs/plugin-react": "^4.4.1",
-    "eslint": "^9.25.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^16.0.0",
-    "rollup": "^4.40.2",
-    "rollup-plugin-dts": "^6.2.1",
-    "tw-animate-css": "^1.2.9",
-    "typescript": "~5.8.3",
-    "vite": "^6.3.5",
-    "vite-plugin-dts": "^4.5.3"
-  },
-  "peerDependencies": {
-    "@radix-ui/react-slot": "^1.2.2",
-    "lucide-react": "^0.510.0",
-    "react": ">=18.2.0 <20.0.0",
-    "react-dom": ">=18.2.0 <20.0.0",
-    "tailwindcss": ">=3.0.0 <5.0.0"
-  }
+	"name": "synap-ui",
+	"private": false,
+	"version": "0.0.5",
+	"type": "module",
+	"main": "./dist/es/index.js",
+	"module": "./dist/es/index.js",
+	"types": "./dist/types/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/es/index.js"
+		},
+		"./form": {
+			"types": "./dist/types/core/form/index.d.ts",
+			"import": "./dist/es/form.js"
+		},
+		"./table": {
+			"types": "./dist/types/table.d.ts",
+			"import": "./dist/es/table.js"
+		},
+		"./components": {
+			"types": "./dist/types/components/index.d.ts",
+			"import": "./dist/es/components.js"
+		},
+		"./providers": {
+			"types": "./dist/types/providers/index.d.ts",
+			"import": "./dist/es/providers.js"
+		},
+		"./validators": {
+			"types": "./dist/types/utils/validators.d.ts",
+			"import": "./dist/es/utils/validators.js"
+		},
+		"./hooks": {
+			"types": "./dist/types/hooks/index.d.ts",
+			"import": "./dist/es/hooks.js"
+		},
+		"./styles.css": {
+			"import": "./dist/assets/index.css"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ShahadatAnik/synaptech-ui"
+	},
+	"keywords": [
+		"react",
+		"ui",
+		"components",
+		"library",
+		"tailwindcss",
+		"shadcn"
+	],
+	"license": "MIT",
+	"scripts": {
+		"dev": "vite",
+		"lint": "eslint .",
+		"build": "rm -rf dist && npm run build:es && npm run build:types",
+		"build:es": "vite build",
+		"build:umd": "vite build --mode umd",
+		"build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --outDir dist/types",
+		"prepublishOnly": "npm run build",
+		"prettier:write": "prettier . --write"
+	},
+	"dependencies": {
+		"@handsontable/react": "^14.6.1",
+		"@hookform/error-message": "^2.0.1",
+		"@hookform/resolvers": "^5.0.1",
+		"@radix-ui/react-alert-dialog": "^1.1.13",
+		"@radix-ui/react-checkbox": "^1.3.1",
+		"@radix-ui/react-dialog": "^1.1.13",
+		"@radix-ui/react-dropdown-menu": "^2.1.14",
+		"@radix-ui/react-hover-card": "^1.1.13",
+		"@radix-ui/react-icons": "^1.3.2",
+		"@radix-ui/react-label": "^2.1.6",
+		"@radix-ui/react-popover": "^1.1.13",
+		"@radix-ui/react-scroll-area": "^1.2.8",
+		"@radix-ui/react-select": "^2.2.4",
+		"@radix-ui/react-separator": "^1.1.6",
+		"@radix-ui/react-slot": "^1.2.2",
+		"@radix-ui/react-switch": "^1.2.4",
+		"@radix-ui/react-tooltip": "^1.2.6",
+		"@tailwindcss/vite": "^4.1.6",
+		"@tanstack/match-sorter-utils": "^8.19.4",
+		"@tanstack/react-query": "^5.76.1",
+		"@tanstack/react-query-devtools": "^5.76.1",
+		"@tanstack/react-table": "^8.21.3",
+		"axios": "^1.9.0",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"cmdk": "^1.1.1",
+		"date-fns": "^4.1.0",
+		"handsontable": "^14.6.1",
+		"js-cookie": "^3.0.5",
+		"lodash": "^4.17.21",
+		"lucide-react": "^0.510.0",
+		"next-themes": "^0.4.6",
+		"react-csv": "^2.2.2",
+		"react-day-picker": "^9.7.0",
+		"react-hook-form": "^7.56.3",
+		"react-paginate": "^8.3.0",
+		"react-select": "^5.10.1",
+		"sonner": "^2.0.3",
+		"tailwind-merge": "^3.3.0",
+		"zod": "^3.24.4",
+		"zod_utilz": "^0.8.4"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.26.0",
+		"@hookform/devtools": "^4.4.0",
+		"@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+		"@rollup/plugin-typescript": "^12.1.2",
+		"@types/js-cookie": "^3.0.6",
+		"@types/lodash": "^4.17.16",
+		"@types/node": "^22.15.18",
+		"@types/react": "^19.1.4",
+		"@types/react-csv": "^1.1.10",
+		"@types/react-dom": "^19.1.5",
+		"@typescript-eslint/eslint-plugin": "^8.32.1",
+		"@typescript-eslint/parser": "^8.32.1",
+		"@vitejs/plugin-react": "^4.4.1",
+		"eslint": "^9.26.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-refresh": "^0.4.20",
+		"globals": "^16.1.0",
+		"prettier": "^3.5.3",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"rollup": "^4.40.2",
+		"rollup-plugin-dts": "^6.2.1",
+		"tw-animate-css": "^1.2.9",
+		"typescript": "~5.8.3",
+		"typescript-eslint": "^8.32.1",
+		"vite": "^6.3.5",
+		"vite-plugin-dts": "^4.5.4"
+	},
+	"peerDependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"tailwindcss": "^4.1.6"
+	}
 }
